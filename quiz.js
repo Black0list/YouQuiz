@@ -6,6 +6,9 @@ const Title = document.getElementById("h6");
 const Options = document.getElementsByClassName("Options")[0];
 const Buttons = document.getElementsByClassName("Buttons")[0];
 const Result = document.getElementsByClassName("result")[0];
+const score = document.getElementById("score");
+
+const Main_Histo = document.getElementById("Main_History");
 
 
 let Score = 0;
@@ -15,27 +18,32 @@ let Questions = [
     {
         "question": "What HTML Stands for",
         "options": ["Hyper Text Markup Language","Hold Text","popcorn","coffee"],
-        "answerIndex": 0
+        "answerIndex": 0,
+        "answerValue": false,
     },
     {
         "question": "What CSS Stands for",
         "options": ["Cascading Style Sheets","Cascading Serial Sorts","popcorn","coffee"],
-        "answerIndex": 0
+        "answerIndex": 0,
+        "answerValue": false,
     },
     {
         "question": "What FTP Stands for",
         "options": ["For Trivial Protocol","File Transfer Protocol","popcorn","coffee"],
-        "answerIndex": 1
+        "answerIndex": 1,
+        "answerValue": false,
     },
     {
         "question": "What DHCP Stands for",
         "options": ["Dynamic Host Control Protocol","Dead Head Control Protocol","Dynamic Host Configuration Protocol","coffee"],
-        "answerIndex": 2
+        "answerIndex": 2,
+        "answerValue": false,
     },
     {
         "question": "What DNS Stands for",
         "options": ["Domain Name Sars","Domain Name Source","Domain Name Seats","Domain Name System"],
-        "answerIndex": 3
+        "answerIndex": 3,
+        "answerValue": false,
     }
 ]
 
@@ -56,9 +64,10 @@ function ShowQuiz(){
     Title.innerHTML = "Q"+(Index+1)+". "+Questions[Index].question;
 
     console.log(Questions[Index].options);
+    console.log(Score);
 
-    Questions[Index].options.forEach((element) => {
-        let i = 0;
+    Questions[Index].options.forEach((element, i) => {
+        
 
         const Option = document.createElement("div");
         Option.classList.add("form-check");
@@ -73,7 +82,7 @@ function ShowQuiz(){
         InputElement.name  = "exampleRadios";
         InputElement.id = `exampleRadios${i}`;
         InputElement.value = `${i}`;
-        InputElement.onclick = () => Selected(element);
+        InputElement.setAttribute("onclick", `Selected(${i})`)
         InputElement.classList.add("form-check-input");
         
         Option.appendChild(LabelElement);
@@ -81,8 +90,6 @@ function ShowQuiz(){
         LabelElement.htmlFor = InputElement.id;
         LabelElement.innerHTML = element;
         LabelElement.classList.add("form-check-label");
-
-        i++;
     })
     
 
@@ -104,7 +111,7 @@ function ShowQuiz(){
 
         pre.classList.add("btn", "btn-primary");
         nex.classList.add("btn", "btn-primary");
-        Questions.length
+        
 
     } else if(Index >= 1 && Index < 4){
         
@@ -138,18 +145,47 @@ function NextQ(){
     } else {
         Quiz.style.display = "none";
         Result.style.display = "flex";
+        score.innerHTML = `Score : ${Score}/${Questions.length}`
+
+        Resultat();
+
     }
 }
 
 function PreviousQ(){
-    --Index;
+    if(Score < 0){
+        Score = 0;
+    }
+    Score--;
+    Index--;
     ShowQuiz();
 }
 
 function Selected(selectedOption){
     if(Questions[Index].answerIndex == selectedOption){
         Score++;
-        console.log(Score);
+        Questions[Index].answerValue = true;
     }
 }
 
+
+function Resultat(){
+    Questions.forEach((element, i) => {
+        Main_Histo.innerHTML = '';
+
+        const HistoDiv = document.createElement("div");
+        HistoDiv.classList.add("History");
+        Main_Histo.appendChild(HistoDiv);
+
+        const QDiv = document.createElement("div");
+        QDiv.classList.add(`respond`);
+        QDiv.innerText = "Q"+(i+1)+". "+element.question;
+        HistoDiv.appendChild(QDiv);
+        
+        if(element.answerValue){
+            QDiv.style.backgroundColor = "rgba(6, 181, 65, 0.66)"
+        } else {
+            QDiv.style.backgroundColor = "rgba(255, 45, 45, 0.66)"
+        }
+    })
+}
