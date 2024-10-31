@@ -20,30 +20,35 @@ let Questions = [
         "options": ["Hyper Text Markup Language","Hold Text","popcorn","coffee"],
         "answerIndex": 0,
         "answerValue": false,
+        "answerSelected" : "skipped"
     },
     {
         "question": "What CSS Stands for",
         "options": ["Cascading Style Sheets","Cascading Serial Sorts","popcorn","coffee"],
         "answerIndex": 0,
         "answerValue": false,
+        "answerSelected" : "skipped"
     },
     {
         "question": "What FTP Stands for",
         "options": ["For Trivial Protocol","File Transfer Protocol","popcorn","coffee"],
         "answerIndex": 1,
         "answerValue": false,
+        "answerSelected" : "skipped"
     },
     {
         "question": "What DHCP Stands for",
         "options": ["Dynamic Host Control Protocol","Dead Head Control Protocol","Dynamic Host Configuration Protocol","coffee"],
         "answerIndex": 2,
         "answerValue": false,
+        "answerSelected" : "skipped"
     },
     {
-        "question": "What DNS Stands for",
+        "question": "What DNS Stands for ?",
         "options": ["Domain Name Sars","Domain Name Source","Domain Name Seats","Domain Name System"],
         "answerIndex": 3,
         "answerValue": false,
+        "answerSelected" : "skipped"
     }
 ]
 
@@ -52,6 +57,12 @@ function NextPage() {
     Result.style.display = 'none';
     Score = 0;
     Index = 0;
+
+    Questions.forEach((el, i) => {
+        el.answerValue = false;
+        el.answerSelected = "skipped"
+    })
+
     ShowQuiz();
 }
 
@@ -65,6 +76,9 @@ function ShowQuiz(){
 
     console.log(Questions[Index].options);
     console.log(Score);
+
+    Questions[Index].answerValue = false;
+    Questions[Index].answerSelected = "skipped"
 
     Questions[Index].options.forEach((element, i) => {
         
@@ -143,12 +157,7 @@ function NextQ(){
         ++Index;
         ShowQuiz();
     } else {
-        Quiz.style.display = "none";
-        Result.style.display = "flex";
-        score.innerHTML = `Score : ${Score}/${Questions.length}`
-
         Resultat();
-
     }
 }
 
@@ -166,26 +175,38 @@ function Selected(selectedOption){
         Score++;
         Questions[Index].answerValue = true;
     }
+    Questions[Index].answerValue = false;
+    Questions[Index].answerSelected = Questions[Index].options[selectedOption];
 }
 
 
 function Resultat(){
-    Questions.forEach((element, i) => {
+        Quiz.style.display = "none";
+        Result.style.display = "flex";
+        score.innerHTML = `Score : ${Score}/${Questions.length}`
+
         Main_Histo.innerHTML = '';
+       
+        Questions.forEach((element, i) => {
 
         const HistoDiv = document.createElement("div");
         HistoDiv.classList.add("History");
         Main_Histo.appendChild(HistoDiv);
 
         const QDiv = document.createElement("div");
-        QDiv.classList.add(`respond`);
         QDiv.innerText = "Q"+(i+1)+". "+element.question;
+        QDiv.style.width = "100%"
         HistoDiv.appendChild(QDiv);
+
+        const ADiv = document.createElement("div");
+        ADiv.innerText = `Answer : ${element.answerSelected}`;
+        ADiv.classList.add(`respond`);
+        HistoDiv.appendChild(ADiv)
         
-        if(element.answerValue){
-            QDiv.style.backgroundColor = "rgba(6, 181, 65, 0.66)"
-        } else {
-            QDiv.style.backgroundColor = "rgba(255, 45, 45, 0.66)"
+        if(element.answerValue === true){
+            ADiv.style.backgroundColor = "rgba(6, 181, 65, 0.66)"
+        } else if(element.answerValue === false) {
+            ADiv.style.backgroundColor = "rgba(255, 45, 45, 0.66)"
         }
     })
 }
