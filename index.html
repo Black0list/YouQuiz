@@ -102,6 +102,17 @@
             row-gap: 10px;
         }
 
+        #counter {
+            height: 30px;
+            width: 30px;
+            background-color: rgb(11, 11, 38);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
         @media only screen and (max-height : 100vh) {
             #Main_History {
                 overflow-y: scroll;
@@ -120,7 +131,11 @@
     </div>
 
     <div class="container-sm">
-        <p id="h6"> What is the Number Of Stars ?</p>
+        
+        <div id="header" style="display: flex; justify-content: space-between;">
+            <p id="h6"> What is the Number Of Stars ?</p>
+            <div id="counter">15</div>
+        </div>
 
         <div class="Options">
             <div class="form-check">

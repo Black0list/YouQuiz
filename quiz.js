@@ -14,42 +14,77 @@ const Main_Histo = document.getElementById("Main_History");
 let Score = 0;
 let Index = 0;
 
-let Questions = [
-    {
-        "question": "What HTML Stands for",
-        "options": ["Hyper Text Markup Language","Hold Text","popcorn","coffee"],
-        "answerIndex": 0,
-        "answerValue": false,
-        "answerSelected" : "skipped"
-    },
-    {
-        "question": "What CSS Stands for",
-        "options": ["Cascading Style Sheets","Cascading Serial Sorts","popcorn","coffee"],
-        "answerIndex": 0,
-        "answerValue": false,
-        "answerSelected" : "skipped"
-    },
-    {
-        "question": "What FTP Stands for",
-        "options": ["For Trivial Protocol","File Transfer Protocol","popcorn","coffee"],
-        "answerIndex": 1,
-        "answerValue": false,
-        "answerSelected" : "skipped"
-    },
-    {
-        "question": "What DHCP Stands for",
-        "options": ["Dynamic Host Control Protocol","Dead Head Control Protocol","Dynamic Host Configuration Protocol","coffee"],
-        "answerIndex": 2,
-        "answerValue": false,
-        "answerSelected" : "skipped"
-    },
-    {
-        "question": "What DNS Stands for ?",
-        "options": ["Domain Name Sars","Domain Name Source","Domain Name Seats","Domain Name System"],
-        "answerIndex": 3,
-        "answerValue": false,
-        "answerSelected" : "skipped"
-    }
+let Questions = [  
+    {  
+        "question": "What SQL Stands for?",  
+        "options": ["Structured Query Language", "Simple Query Language", "Standard Question Language", "Structured Quick Language"],  
+        "answerIndex": 0,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    },  
+    {  
+        "question": "What API Stands for?",  
+        "options": ["Application Programming Interface", "Advanced Programming Interface", "Application Process Interface", "Application Program Interaction"],  
+        "answerIndex": 0,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    },  
+    {  
+        "question": "What HTTP Stands for?",  
+        "options": ["Hypertext Transfer Protocol", "Hyper Transfer Text Protocol", "High Transfer Protocol", "Hypertext Transaction Protocol"],  
+        "answerIndex": 0,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    },  
+    {  
+        "question": "What IP Stands for?",  
+        "options": ["International Protocol", "Internal Protocol", "Interconnected Protocol", "Internet Protocol"],  
+        "answerIndex": 3,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    },  
+    {  
+        "question": "What OS Stands for?",  
+        "options": ["Office System", "Operational Software", "Operating System", "Open Source"],  
+        "answerIndex": 2,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    },  
+    {  
+        "question": "What USB Stands for?",  
+        "options": ["Uniform Serial Bus", "Universal Serial Bus", "Universal System Bus", "Unilateral Serial Bus"],  
+        "answerIndex": 1,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    },  
+    {  
+        "question": "What RAM Stands for?",  
+        "options": ["Read Available Memory", "Rapid Access Memory", "Random Access Memory", "Real-time Access Memory"],  
+        "answerIndex": 2,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    },  
+    {  
+        "question": "What ROM Stands for?",  
+        "options": ["Read-Only Memory", "Read-Only Module", "Random-Only Memory", "Rapidly Operating Memory"],  
+        "answerIndex": 0,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    },  
+    {  
+        "question": "What SSL Stands for?",  
+        "options": ["Simple Sockets Layer", "Secure System Layer", "Secure Sockets Layer", "Standard Security Layer"],  
+        "answerIndex": 2,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    },  
+    {  
+        "question": "What IoT Stands for?",  
+        "options": ["Interface of Thecnology", "Internet of Things", "Interconnected Objects", "Internal of Things"],  
+        "answerIndex": 1,  
+        "answerValue": false,  
+        "answerSelected" : "skipped"  
+    }  
 ]
 
 function NextPage() {
@@ -69,6 +104,9 @@ function NextPage() {
 
 
 function ShowQuiz(){
+
+
+
     Quiz.style.display = 'flex';
     Options.innerHTML = '';
     Buttons.innerHTML = '';
@@ -76,6 +114,7 @@ function ShowQuiz(){
 
     console.log(Questions[Index].options);
     console.log(Score);
+ 
 
     Questions[Index].answerValue = false;
     Questions[Index].answerSelected = "skipped"
@@ -153,6 +192,7 @@ function ShowQuiz(){
 }
 
 function NextQ(){
+    count = 15;
     if(Index < Questions.length - 1){
         ++Index;
         ShowQuiz();
@@ -217,3 +257,5 @@ function Resultat(){
         }
     })
 }
+
+
