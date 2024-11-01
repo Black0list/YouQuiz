@@ -13,6 +13,7 @@ const Main_Histo = document.getElementById("Main_History");
 
 let Score = 0;
 let Index = 0;
+let count = 15;
 
 let Questions = [  
     {  
@@ -93,10 +94,10 @@ function NextPage() {
     Score = 0;
     Index = 0;
 
-    Questions.forEach((el, i) => {
-        el.answerValue = false;
-        el.answerSelected = "skipped"
-    })
+    // Questions.forEach((el, i) => {
+    //     el.answerValue = false;
+    //     el.answerSelected = "skipped"
+    // })
 
     ShowQuiz();
 }
@@ -166,7 +167,7 @@ function ShowQuiz(){
         nex.classList.add("btn", "btn-primary");
         
 
-    } else if(Index >= 1 && Index < 4){
+    } else if(Index >= 1 && Index < Questions.length-1){
         
 
         nex.innerHTML = "Next";
@@ -192,7 +193,6 @@ function ShowQuiz(){
 }
 
 function NextQ(){
-    count = 15;
     if(Index < Questions.length - 1){
         ++Index;
         ShowQuiz();

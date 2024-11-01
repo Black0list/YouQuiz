@@ -94,6 +94,7 @@
             background-color: rgba(6, 181, 65, 0.66);
             padding: 9px;
             border-radius: 10px;
+            width: 100%;
         }
 
         #Main_History{
@@ -123,6 +124,18 @@
 
 
     </style>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: absolute; top: 0; width: 100%;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Quiz Game</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 
     <div class="start">
         <h1>🎊</h1>
@@ -213,6 +226,9 @@
             </div>
             <button type="button" class="btn btn-success" onclick="NextPage()">Restart Quiz</button>
         </div>
+
+
+        
 
 
         <script src="./quiz.js">
