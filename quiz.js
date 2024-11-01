@@ -171,12 +171,19 @@ function PreviousQ(){
 }
 
 function Selected(selectedOption){
-    if(Questions[Index].answerIndex == selectedOption){
-        Score++;
+    if(Questions[Index].answerIndex === selectedOption){
+        if(!Questions[Index].answerValue){
+            Score++;
+        } 
         Questions[Index].answerValue = true;
+    } else {
+        if(Questions[Index].answerValue){
+            Score--;
+        } 
+        Questions[Index].answerValue = false;
     }
-    Questions[Index].answerValue = false;
     Questions[Index].answerSelected = Questions[Index].options[selectedOption];
+
 }
 
 
